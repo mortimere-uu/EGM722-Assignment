@@ -40,13 +40,13 @@ import pandas as pd
 
 countries = gpd.read_file(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Countries.shp') # 2020 UK country .shp
 counties_UA = gpd.read_file (r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Counties_and_Unitary_Authorities.shp')
-counties_1961 = gpd.read_file(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Counties_1961.shp') # 1961 counties data
-wards = gpd.read_file (r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Wards.shp') # 2011 wards data
+# counties_1961 = gpd.read_file(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Counties_1961.shp') # 1961 counties data
+# wards = gpd.read_file (r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Wards.shp') # 2011 wards data
 population_df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\population.csv') # uk population data from 1991 to 2019
 
 # print(countries.head())
 # print(wards.crs)
-print(population_df.head()) # check population table data
+# print(population_df.head()) # check population table data
 
 
 testFig = plt.figure(figsize=(10, 10)) # create a figure of size 10x10 (representing the page siz in inches)
@@ -64,13 +64,17 @@ ax.set_extent([xmin, xmax, ymin, ymax], crs=newCRS)
 counties_UA_outline = ShapelyFeature(counties_UA['geometry'], newCRS, edgecolor='k', facecolor='w', linewidth=0.2)
 ax.add_feature(counties_UA_outline)
 
-wards_outline = ShapelyFeature(wards['geometry'], newCRS, edgecolor='k', facecolor='w', linewidth=0.2)
-ax.add_feature(wards_outline)
+#wards_outline = ShapelyFeature(wards['geometry'], newCRS, edgecolor='k', facecolor='w', linewidth=0.2)
+#ax.add_feature(wards_outline)
 
 #scale_bar(ax)
 
 #testFig.savefig('testfig.png', bbox_inches='tight', dpi=300)
 
-# join countries to counties/UA to generate summary statistics
+# join countries to counties/UA to generate summary statistics for countries
+print(countries.crs == counties_UA.crs) # test if crs are the same prior to join
+join = gpd.sjoin(countries, counties_UA, how='inner', lsuffix='left', rsuffix='right') # perfrom spatial join of countries to counties_ua
+print(join) # show the joined table
+
 
 # next step merge population data with counties
