@@ -42,19 +42,20 @@ countries = gpd.read_file(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_
 counties_UA = gpd.read_file (r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Counties_and_Unitary_Authorities.shp')
 counties_1961 = gpd.read_file(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Counties_1961.shp') # 1961 counties data
 wards = gpd.read_file (r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Wards.shp') # 2011 wards data
-df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\population.csv') # uk population data from 1991 to 2019
+population_df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\population.csv') # uk population data from 1991 to 2019
 
 # print(countries.head())
 # print(wards.crs)
-print(df.head()) # check population table data
+print(population_df.head()) # check population table data
 
 
-testFig = plt.figure(figsize=(10, 10))
+testFig = plt.figure(figsize=(10, 10)) # create a figure of size 10x10 (representing the page siz in inches)
 
-newCRS = ccrs.UTM(30)
+newCRS = ccrs.UTM(30) # create a Universal Transverse Mercator reference system to transform the data.
 
-ax = plt.axes(projection=ccrs.Mercator())
-country_outline = ShapelyFeature(countries['geometry'], newCRS, edgecolor='k', facecolor='w')
+ax = plt.axes(projection=ccrs.Mercator()) # create an axes object in the figure, using Mercater projection to plot data
+
+country_outline = ShapelyFeature(countries['geometry'], newCRS, edgecolor='k', facecolor='w') # add the countries outlines to figure using cartopy's ShapelyFeature
 xmin, ymin, xmax, ymax = countries.total_bounds
 ax.add_feature(country_outline)
 
@@ -69,5 +70,7 @@ ax.add_feature(wards_outline)
 #scale_bar(ax)
 
 #testFig.savefig('testfig.png', bbox_inches='tight', dpi=300)
+
+# join countries to counties/UA to generate summary statistics
 
 # next step merge population data with counties
