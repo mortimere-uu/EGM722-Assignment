@@ -15,13 +15,13 @@ def generate_handles(labels, colors, edge='k', alpha=1):
     return handles
 
 
-plt.ion()
+# plt.ion()
 
 # ---------------------------------------------------------------------------------------------------------------------
 # in this section, write the script to load the data and complete the main part of the analysis.
 # load datasets
 counties_UA = gpd.read_file (r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\Counties_and_Unitary_Authorities.shp')
-population_df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\population.csv') # uk population data from 1991 to 2019
+population_df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\data_files\population_number.csv') # uk population data from 1991 to 2019
 
 
 # try to print the results to the screen using the format method demonstrated in the workbook
@@ -33,9 +33,12 @@ population_df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\dat
 
 # next step merge population data table with counties_ua shapefile
 
+years = [str(yr) for yr in range(1991, 2020)]
+population_df[years] = population_df[years].apply(pd.to_numeric, args=('coerce',))
 counties_UA_population = (pd.merge(counties_UA, population_df, on='CTYUA20CD', how='left')) # merge population data with counties_ua
 del counties_UA_population['CTYUA20NMW'], counties_UA_population['BNG_E'], counties_UA_population['BNG_N'], counties_UA_population['LONG'], counties_UA_population['LAT'] # remove unwanted columns
-print(counties_UA_population.columns) # column headers from merged table
+# print(counties_UA_population.columns) # column headers from merged table
+print(counties_UA_population)
 
 # your analysis goes here...
 
@@ -59,16 +62,19 @@ divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.1, axes_class=plt.Axes)
 
 # plot the ward data into our axis, using
-counties_UA_population_plot = counties_UA_population.plot(column='2019', ax=ax, vmin=2000, vmax=1600000, cmap='viridis',
+counties_UA_population_plot = counties_UA_population.plot(column='1991', ax=ax, vmin=2000, vmax=1600000, cmap='viridis',
                        legend=True, cax=cax)
 
-counties_UA_outline = ShapelyFeature(counties_UA['geometry'], myCRS, edgecolor='k', facecolor='w', linewidth=0.2)
+counties_UA_outline = ShapelyFeature(counties_UA['geometry'], myCRS, edgecolor='k', facecolor='none', linewidth=0.2) # changed facecover
 ax.add_feature(counties_UA_outline)
 
-county_handles = generate_handles([''], ['none'], edge='r')
+county_handles = generate_handles([''], ['none'], edge='k')
 
 ax.legend(county_handles, ['Counties'], fontsize=12, loc='upper left', framealpha=1)
 
 # save the figure
 # plt.show()
-fig.savefig('sample_pop_newscript.png', dpi=300, bbox_inches='tight')
+fig.savefig('sample_pop_newscript1991.png', dpi=300, bbox_inches='tight')
+
+
+# plot a line graph of data
