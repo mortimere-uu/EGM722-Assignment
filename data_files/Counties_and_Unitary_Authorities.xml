@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><MD_Metadata xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:xalan="http://xml.apache.org/xalan" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.isotc211.org/2005/gmd">
     <fileIdentifier>
-        <gco:CharacterString>1619617974067r7338831077845198</gco:CharacterString>
+        <gco:CharacterString>1619619356432r6220658913667434</gco:CharacterString>
     </fileIdentifier>
     <language>
         <LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
@@ -49,7 +49,7 @@
             <referenceSystemIdentifier>
                 <RS_Identifier>
                     <code>
-                        <gco:CharacterString>a325b820bf8b41cfb3687e482912abe6</gco:CharacterString>
+                        <gco:CharacterString>51e3bc3bd5994a0a85bf4a21351871e1</gco:CharacterString>
                     </code>
                 </RS_Identifier>
             </referenceSystemIdentifier>
@@ -60,7 +60,7 @@
             <citation>
                 <CI_Citation>
                     <title>
-                        <gmx:Anchor xlink:href="https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BFE_V2/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS">&lt;METADATA TEMPLATE&gt;</gmx:Anchor>
+                        <gmx:Anchor xlink:href="https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BUC_V2/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS">&lt;METADATA TEMPLATE&gt;</gmx:Anchor>
                     </title>
                     <date>
                         <CI_Date>
@@ -75,14 +75,14 @@
                     <identifier>
                         <MD_Identifier>
                             <code>
-                                <gco:CharacterString>a325b820bf8b41cfb3687e482912abe6</gco:CharacterString>
+                                <gco:CharacterString>51e3bc3bd5994a0a85bf4a21351871e1</gco:CharacterString>
                             </code>
                         </MD_Identifier>
                     </identifier>
                 </CI_Citation>
             </citation>
             <abstract>
-                <gco:CharacterString>This file contains the digital vector boundaries for Counties and Unitary Authorities, in the United Kingdom as at December 2020.The boundaries available are: (BFE) Full resolution - extent of the realm (usually this is the Mean Low Water mark but in some cases boundaries extend beyond this to include off shore islands).Contains both Ordnance Survey and ONS Intellectual Property Rights.REST URL of ArcGIS for INSPIRE View Service – https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BFE_V2/MapServer/exts/InspireViewREST URL of ArcGIS for INSPIRE Feature Download Service – https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BFE_V2/MapServer/exts/InspireFeatureDownloadREST URL of Feature Access Service – https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BFE_V2/FeatureServer</gco:CharacterString>
+                <gco:CharacterString>This file contains the digital vector boundaries for Counties and Unitary Authorities, in the United Kingdom as at December 2020.The boundaries available are: (BUC) Ultra generalised (500m) - clipped to the coastline (Mean High Water mark).Contains both Ordnance Survey and ONS Intellectual Property Rights.REST URL of ArcGIS for INSPIRE View Service – https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BUC_V2/MapServer/exts/InspireViewREST URL of ArcGIS for INSPIRE Feature Download Service – https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BUC_V2/MapServer/exts/InspireFeatureDownloadREST URL of Feature Access Service – https://ons-inspire.esriuk.com/arcgis/rest/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BUC_V2/FeatureServer</gco:CharacterString>
             </abstract>
             <credit>
                 <gco:CharacterString>Office for National Statistics</gco:CharacterString>
@@ -622,7 +622,7 @@
                     <onLine>
                         <CI_OnlineResource>
                             <linkage>
-                                <URL>https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BFE_V2/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS</URL>
+                                <URL>https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BUC_V2/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS</URL>
                             </linkage>
                             <name>
                                 <gco:CharacterString>Link to WMS</gco:CharacterString>
@@ -635,7 +635,7 @@
                     <onLine>
                         <CI_OnlineResource>
                             <linkage>
-                                <URL>https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BFE_V2/MapServer/WFSServer?request=GetCapabilities&amp;service=WFS</URL>
+                                <URL>https://ons-inspire.esriuk.com/arcgis/services/Administrative_Boundaries/Counties_and_Unitary_Authorities_December_2020_UK_BUC_V2/MapServer/WFSServer?request=GetCapabilities&amp;service=WFS</URL>
                             </linkage>
                             <name>
                                 <gco:CharacterString>Link to WFS</gco:CharacterString>
