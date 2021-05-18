@@ -90,7 +90,7 @@ ax.legend(counties_handles, ['Counties'], fontsize=12, loc='upper left', frameal
 #wards_outline = ShapelyFeature(wards['geometry'], newCRS, edgecolor='k', facecolor='w', linewidth=0.2)
 #ax.add_feature(wards_outline)
 
-#scale_bar(ax)
+scale_bar(ax)
 
 testFig.savefig('testfig_population.png', bbox_inches='tight', dpi=300)
 
