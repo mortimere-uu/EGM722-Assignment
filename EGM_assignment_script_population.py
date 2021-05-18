@@ -16,6 +16,7 @@ def generate_handles(labels, colors, edge='k', alpha=1):
     return handles
 
 # add scale bar for maps
+# create a scale bar of length 20 km in the upper right corner of the map - needs correcting
 
 
 # add template for graphs
@@ -93,7 +94,11 @@ del test_county_select['OBJECTID'], test_county_select['CTYUA20CD'], test_county
 print(test_county_select.columns)
 
 
+# can i plot a figure of population difference (growth or loss) between 2001 and 2019
+counties_UA_population['Population change'] = counties_UA_population['2019'] - counties_UA_population['2001']  # calculated population change 2019-2001 (cant use 1991-2000 as no data for ireland)
 
+print(counties_UA_population)  # print the updated GeoDataFrame
+print(counties_UA_population.sort_values(['Population change'], ascending=[False])) # arrange population change in descending order
 
 # ---------------------------------------------------------------------------------------------------------------------
 # below here, you may need to modify the script somewhat to create your map.
@@ -114,8 +119,8 @@ divider = make_axes_locatable(ax)
 cax = divider.append_axes("right", size="5%", pad=0.1, axes_class=plt.Axes)
 
 # plot the ward data into our axis, using
-counties_UA_population_plot = counties_UA_population.plot(column='2019', ax=ax, vmin=1800, vmax=1800000, cmap='viridis',
-                       legend=True, cax=cax, legend_kwds={'label' : 'Population', 'orientation': 'vertical'})
+counties_UA_population_plot = counties_UA_population.plot(column='Population change', ax=ax, vmin=-7000, vmax=250000, cmap='viridis',
+                       legend=True, cax=cax, legend_kwds={'label' : 'Population change', 'orientation': 'vertical'})
 
 counties_UA_outline = ShapelyFeature(counties_UA['geometry'], myCRS, edgecolor='k', facecolor='none', linewidth=0.2) # changed facecover
 ax.add_feature(counties_UA_outline)
@@ -123,12 +128,13 @@ ax.add_feature(counties_UA_outline)
 county_handles = generate_handles([''], ['none'], edge='k')
 
 ax.legend(county_handles, ['Counties'], fontsize=10, loc='upper left', framealpha=1)
+# add year title to map/legend
 
 # scale_bar(ax)
 
 # save the figure
 # plt.show()
-# fig.savefig('sample_pop_newscript2019.png', dpi=300, bbox_inches='tight')
+fig.savefig('sample_pop_newscript_popchange.png', dpi=300, bbox_inches='tight')
 
 
 # plot a line graph of data
