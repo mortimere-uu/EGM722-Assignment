@@ -46,7 +46,7 @@ counties_UA_name = title of data column with county/UA name
 
 country_id = title of data column with country identifier
 
-Execute the script and output figures and tabulated data will be generated and saved to the output folder. Folder pathways for outputs will also need to be changed in the script, please see **FUNCTIONS** and **FIGURES** and modify the pathway accordingly. 
+Execute the script and output figures and tabulated data will be generated and saved to the output folder. Folder pathways for outputs will also need to be changed in the script, please see **FUNCTIONS** and **FIGURES** sections in the script file and modify the output pathway accordingly. Some summary statistics will be printed in the IDE screen, following execution of the script.
 
 # References
 Training data available from:
