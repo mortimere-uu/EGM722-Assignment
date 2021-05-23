@@ -24,7 +24,7 @@ Open the EGM722_assignment_script.py in your Integrated Development Environment 
 
 Ensure that the data file pathway in the script is modified to your locally saved repository (\GitHub\EGM722_Assignment\data_files). These can be changed in the **DATASETS** section (lines 214 - 230) in the script.
 
-In the **Analysis** section the user can input variables the year(s), counties/unitary authorities and country (script lines 231 - 244), along with some of the data parameters. Unfortunatley the script currently has to be modified before running, the variables are currently filled with values that generated the outputs saved to the repository. The variables that can be modified for the test data:
+In the **ANALYSIS** section the user can input variables the year(s), counties/unitary authorities and country (script lines 231 - 244), along with some of the data parameters. Unfortunatley the script currently has to be modified before running, the variables are currently filled with values that generated the outputs saved to the repository. The variables that can be modified for the test data:
 
 select_year = select year of interest/start year for population difference
 
