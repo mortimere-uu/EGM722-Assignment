@@ -1,5 +1,5 @@
 # This script displays UK Counties/Unitary Authorities coded by UK population data for a selected year.
-# Summary statistics are generated.
+# Summary statistics are also generated.
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
@@ -47,12 +47,8 @@ def scale_bar(ax, location=(0.92, 0.95)):
     sby = y0 + (y1 - y0) * location[1]
 
     ax.plot([sbx, sbx - 50000], [sby, sby], color='k', linewidth=5, transform=tmc)
-#   plt.plot([sbx, sbx - 25000], [sby, sby], color='k', linewidth=5, transform=tmc)
-#   plt.plot([sbx-25000, sbx - 50000], [sby, sby], color='w', linewidth=5, transform=tmc)
 
     ax.text(sbx-40000, sby- -10000, '50km', transform=tmc, fontsize=6)
-#   plt.text(sbx-12500, sby-4500, '10 km', transform=tmc, fontsize=8)
-#   plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
 
 
 def years_check(select_year, select_year1, data_year_start, data_year_end):
@@ -73,7 +69,7 @@ def years_check(select_year, select_year1, data_year_start, data_year_end):
     elif select_year > select_year1:
         print ('{} is incorrect, please provide start year before ({}).'.format(select_year, select_year1))
     elif select_year < select_year1:
-        print ('The selected dates are suitable to continue.')
+        print('The selected dates are suitable to continue.')
     elif select_year == select_year1:
         print('The selected years are the same, no difference will be displayed in the figure')
 
@@ -144,8 +140,8 @@ def country_data (data_year_start, data_year_end, counties_UA_id):
     population_df[years] = population_df[years].apply(pd.to_numeric, args=(
     'coerce',))  # removes any non-number/nodata, no population data collected for Ireland 1991-2000
     country_population = (pd.merge(countries_counties_UA, population_df, on=(counties_UA_id),
-                                   how='left'))  # merge population data with counties_UA using the CTYUA20CD coloumn
-    #print(country_population)  # some issues with no data rows - is thei due to centre point being outside countryshape - groups of islands?
+                                   how='left'))  # merge population data with counties_UA
+    #print(country_population)  # issue with results with no data rows - occurs on groups of islands - need to resolve
     country_population.to_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\outputs\country_population_all.csv')
 
 
@@ -159,8 +155,8 @@ def country_year_population(select_country, select_year, country_id):
     :param select_year: (str) input year within dataset to map
     :param country_id: (str) column containing countries unique ID
 
-    :return: Creates a summary statement for the countries population for seleted year and a .csv file of the countries
-             population data for all year. An example of the staement generated:
+    :return: Creates a summary statement for the countries population for selected year and a .csv file of the countries
+             population data for all year. An example of the statement:
 
              Total population of England in 2006 was 50,709,444.
     """
@@ -201,7 +197,7 @@ def counties_UA_population_change(select_year, select_year1):
     :param select_year: (str) input year within dataset to analyse.
     :param select_year1: (str) input later year within dataset to perform calculation.
 
-    :return: Creates a column ot population difference (positive or negative int) which is used in figure to represent
+    :return: Creates a column of population change (positive or negative int) which is used in figure to represent
              population change over selected timeframe. Table is presented in descending population difference.
     """
     select_year = str(select_year)
@@ -226,27 +222,27 @@ population_df = pd.read_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\dat
 # print(countries.crs == counties_UA.crs) # check the CRS match for the Countries and Counties/UA vector files.
 
 # epsg code for test data is 27700, if using own data and does not match epsg/crs code modifications to the script
-# are required.
+# are required in FIGURES section.
 
 # ANALYSIS--------------------------------------------------------------------------------------------------------------
 
 # Please input the variables you want to study:
-select_year = '2002' # select year of interest/start year for population difference
-select_county_UA = 'Conwy' # select county/unitary authority
-select_country = 'England' #select country
-select_year1 = 2019 # select end year for population difference
+select_year = '2002' # select year of interest/start year for population difference as str
+select_county_UA = 'Conwy' # select county/unitary authority as str, uncheck line 245 to print counties_UA list
+select_country = 'England' #select country as str, uncheck line 246 to print country list
+select_year1 = 2019 # select end year for population difference as int
 
 #data parameters:
-data_year_start = 1991 # start year of data
-data_year_end = 2019 # end year of data
-counties_UA_id = 'CTYUA20CD' # title of data column with county/UA identifier
-counties_UA_name = 'County / unitary (as of April 2021)' # title of data column with county/UA name
-country_id = 'CTRY20NM' # title of data column with country identifier
+data_year_start = 1991 # start year of data as int
+data_year_end = 2019 # end year of data as int
+counties_UA_id = 'CTYUA20CD' # title of data column with county/UA identifier as str
+counties_UA_name = 'County / unitary (as of April 2021)' # title of data column with county/UA name as str
+country_id = 'CTRY20NM' # title of data column with country identifier as str
 
 # check years selected suitable to population difference calculation
 years_check(select_year, select_year1, data_year_start, data_year_end)
 
-# print(population_df[counties_UA_name])#prints list of counties/UA to input as select_county_UA
+# print(population_df[counties_UA_name])# prints list of counties/UA to input as select_county_UA
 # print(countries[country_id]) # prints a list of countries to input as select_country
 
 # Country statistics for a given year
@@ -260,7 +256,7 @@ counties_UA_centrepoint['geometry'] = counties_UA_centrepoint['geometry'].centro
 countries_counties_UA = gpd.sjoin(countries, counties_UA_centrepoint, how='right', lsuffix='left', rsuffix='right')
 years = [str(yr) for yr in range(data_year_start, data_year_end)] # create a variable called years to compliment the provided dataset
 population_df[years] = population_df[years].apply(pd.to_numeric, args=('coerce',)) # removes non-number/nodata, no population data collected for Ireland 1991-2000
-country_population = (pd.merge(countries_counties_UA, population_df, on=counties_UA_id, how='left')) # merge population data with counties_UA using the CTYUA20CD coloumn
+country_population = (pd.merge(countries_counties_UA, population_df, on=counties_UA_id, how='left')) # merge population data with counties_UA identifier
 
 # Country Summary Statistics Analysis
 
@@ -281,10 +277,10 @@ population_df[years] = population_df[years].apply(pd.to_numeric, args=('coerce',
 counties_UA_population = (pd.merge(counties_UA, population_df, on=counties_UA_id, how='left')) # merge population data with counties_UA
 del counties_UA_population['CTYUA20NMW'], counties_UA_population['BNG_E'], \
     counties_UA_population['BNG_N'], counties_UA_population['LONG'], \
-    counties_UA_population['LAT'] # remove unwanted columns
-#print(counties_UA_population.columns) # check removal of columns and header check of merged table
-#print(counties_UA_population)
-counties_UA_population.to_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\outputs\counties_UA_population.csv') # file note accurate, multiple islands grouped as one geometry are causing an issue with the output table.
+    counties_UA_population['LAT'] # remove unwanted columns, is using own data user may need to modify column names in []
+# print(counties_UA_population.columns) # check removal of columns and header check of merged table
+# print(counties_UA_population)
+counties_UA_population.to_csv(r'C:\Users\Ed\Documents\GitHub\EGM722_Assignment\outputs\counties_UA_population.csv')
 
 # Generate yearly population figures coded by counties/UA
 year_population(select_year, counties_UA_id, counties_UA_name) # print selected years population stats from the year_population function above.
