@@ -1,4 +1,4 @@
-# EGM722-Assignment
+# EGM722 Assignment
 Population Mapping - This tool allows the user to create summary statistics and map county population figures across a country for a given year and illustrate population change across a given time period.
 
 ------------------------------------------------------------------------------------------------------------------
