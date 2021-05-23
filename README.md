@@ -54,3 +54,5 @@ Training data available from:
 NOMIS office labour market statistics. 2021. https://www.nomisweb.co.uk/query/construct/summary.asp?reset=yes&mode=construct&dataset=2002&version=0&anal=1&initsel=
 
 Office for National Statistics. 2021. https://geoportal.statistics.gov.uk/
+
+(Please note that traing data is provided in the project repository, in the data_files folder)
